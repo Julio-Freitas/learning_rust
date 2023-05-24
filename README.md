@@ -1,5 +1,5 @@
 # learning_rust
-My learned in rust in  exercism exercises.
+My learned in rust in  exercises.
 
 <div align="center">
 <!-- Title: -->
