@@ -1,24 +1,4 @@
-// mod  lendo_arquivo;
-// use lendo_arquivo::lendo_arquivo;
-
-// mod trait_file;
-// use trait_file::Pessoa;
-
-// use crate::trait_file::Voz;
-
-// fn count_word(word: &String) -> u32 {
-//     let mut contador: u32 = 0;
-
-//     for indice in word.chars() {
-//         if indice.is_uppercase() {
-//             contador += 1
-//         }
-//     }
 extern crate rand;
-use rand::Rng;
-use std::io;
-//     contador
-// }
 
 mod doenca;
 
@@ -33,51 +13,9 @@ use imobiliaria::Imobiliaria;
 
 mod operation;
 use operation::{calculate, Operations};
-
+mod order_array;
+use order_array::sort_array;
 fn main() {
-    println!("Bem vindo ao jogo da forca!\n Dica-> frutas");
-    let words = vec!["banana", "abacate", "uva", "laranja", "cacau", "caqui"];
-
-    let secret_word = words[rand::thread_rng().gen_range(0..=words.len() - 1)].to_string();
-
-    let mut current_word = vec!['-'; secret_word.len()];
-    let mut guess_num: u32 = 0;
-
-    loop {
-        println!(
-            "Palavra corrente: {}",
-            current_word.iter().collect::<String>()
-        );
-        println!("Adivinhe uma letra:");
-
-        let mut guess = String::new();
-        io::stdin().read_line(&mut guess).unwrap();
-        let guess = guess.trim().chars().next().unwrap();
-
-        let mut found = false;
-
-        if guess_num == secret_word.chars().count().try_into().unwrap() {
-            println!("Tentativa acabaram...");
-            break;
-        };
-        for (i, c) in secret_word.chars().enumerate() {
-            if c == guess {
-                current_word[i] = c;
-                found = true;
-            }
-        }
-
-        if !found {
-            guess_num += 1;
-            println!("Letra não encontrada.");
-        }
-
-        if current_word.iter().collect::<String>() == secret_word {
-            println!("Parabéns, você adivinhou a palavra {}!", secret_word);
-            break;
-        }
-    }
-
     let c = Circle { r: 5.0 };
     c.area();
     c.perimeter();
@@ -120,4 +58,7 @@ fn main() {
         Err(error) => println!("Error: {}", error),
     }
 
+    let mut array: [i32; 7] = [10, 23, 4, 5, 66, 7, -3];
+    sort_array(&mut array);
+    println!("{:?}", array)
 }
