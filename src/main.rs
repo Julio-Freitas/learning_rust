@@ -15,6 +15,12 @@ mod operation;
 use operation::{calculate, Operations};
 mod order_array;
 use order_array::sort_array;
+
+mod medias;
+use medias::{calc, Estatistica};
+
+mod covert_to_pig_latin;
+use  covert_to_pig_latin::convert_ping_latin;
 fn main() {
     let c = Circle { r: 5.0 };
     c.area();
@@ -60,5 +66,9 @@ fn main() {
 
     let mut array: [i32; 7] = [10, 23, 4, 5, 66, 7, -3];
     sort_array(&mut array);
-    println!("{:?}", array)
+    println!("{:?}", array);
+    calc(Estatistica::Media(vec![2, 2, 2]));
+    calc(Estatistica::Mediana(vec![1, 2, 3]));
+    calc(Estatistica::Moda(vec![1, 2, 3, 3, 3, 2, 2, 2, 2, 2]));
+    println!("{}", convert_ping_latin(&String::from("humor")));
 }
