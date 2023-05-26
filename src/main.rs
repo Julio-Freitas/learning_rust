@@ -20,7 +20,13 @@ mod medias;
 use medias::{calc, Estatistica};
 
 mod covert_to_pig_latin;
-use  covert_to_pig_latin::convert_ping_latin;
+use covert_to_pig_latin::convert_ping_latin;
+
+// mod departament;
+// use departament::departament;
+
+mod social_media;
+use social_media::social_media;
 fn main() {
     let c = Circle { r: 5.0 };
     c.area();
@@ -71,4 +77,6 @@ fn main() {
     calc(Estatistica::Mediana(vec![1, 2, 3]));
     calc(Estatistica::Moda(vec![1, 2, 3, 3, 3, 2, 2, 2, 2, 2]));
     println!("{}", convert_ping_latin(&String::from("humor")));
+    // departament();
+    social_media();
 }

@@ -40,12 +40,10 @@ fn moda(numeros: &Vec<i32>) -> i32 {
         let contar: &mut i32 = mapper.entry(numero).or_insert(0);
         *contar += 1;
     }
-;
     let mut maior_valor: i32 = 0;
 
-
     for (chave, valor) in &mapper {
-        if valor  == mapper.values().max().unwrap(){
+        if valor == mapper.values().max().unwrap() {
             maior_valor = **chave
         }
     }
@@ -62,10 +60,8 @@ pub fn calc(op: Estatistica) {
     }
 }
 
-
-
 // Regras de OwnerShip em Rust:
-    //-> Cada valor tem um dono;
-    //-> Só oide ter um único dono;
-    //-> Quando o dono sai do escopo o valor é limpo;
-    //-> A posse (Ownership) pode ser movida a outro Dono;
+//-> Cada valor tem um dono;
+//-> Só oide ter um único dono;
+//-> Quando o dono sai do escopo o valor é limpo;
+//-> A posse (Ownership) pode ser movida a outro Dono;
