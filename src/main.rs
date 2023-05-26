@@ -1,6 +1,24 @@
 #![feature(proc_macro_hygiene, decl_macro)]
+
+use rocket::{ serde::json::Json};
+use serde::Serialize;
+
 #[macro_use]
 extern crate rocket;
+#[derive(Serialize)]
+#[serde(crate = "rocket::serde")]
+struct Task {
+    name: String,
+    age: u32,
+}
+
+#[get("/exemple")]
+fn todo() -> Json<Task> {
+    Json(Task {
+        age: 45,
+        name: "Nome".to_string(),
+    })
+}
 
 #[get("/")]
 fn index() -> &'static str {
@@ -47,15 +65,24 @@ fn search_users(query: String, page: Option<u32>) -> String {
         None => format!("Serching users with '{}' whithout the page.", query),
     }
 }
-fn main() {
+
+#[catch(404)]
+fn not_found() -> &'static str {
+    "Hellor ROcket..."
+}
+
+#[launch]
+fn rocket() -> _ {
     let routes: Vec<rocket::Route> = routes![
         index,
         get_user,
         create_user,
         delete_user,
         update_user,
-        search_users
+        search_users,
+        todo
     ];
-
-    rocket::ignite().mount("/", routes).launch();
+    rocket::build()
+        .mount("/", routes)
+        .register("/", catchers![not_found])
 }
